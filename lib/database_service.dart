@@ -35,4 +35,58 @@ class DatabaseService {
       "groups": [],
     });
   }
+
+  Future getuserdata(String email) async {
+    QuerySnapshot snapshot =
+        await usercoll.where("email", isEqualTo: email).get();
+  }
+
+  getuserdataa() async {
+    return await usercoll.doc(uid).snapshots();
+  }
+
+  Future addgroup(
+      String uid, String name, String groupname, String groupicon) async {
+    DocumentReference documentReference = await groups.add({
+      "groupname": groupname,
+      "admin": uid,
+      "members": [],
+      "groupicon": groupicon,
+      "recentmessage": "",
+      "groupId": "",
+      "recentsender": ""
+    });
+
+    await documentReference.update({
+      "members": FieldValue.arrayUnion(["$uid"]),
+      "groupId": documentReference.id
+    });
+
+    DocumentReference documentReference2 = await usercoll.doc(uid);
+    return await documentReference2.update({
+      "groups": FieldValue.arrayUnion(["${documentReference.id}"])
+    });
+  }
+
+  Future addgroupwithouticon(String uid, String name, String groupname) async {
+    DocumentReference documentReference = await groups.add({
+      "groupname": groupname,
+      "admin": uid,
+      "members": [],
+      "groupicon": "",
+      "recentmessage": "",
+      "groupId": "",
+      "recentsender": ""
+    });
+
+    await documentReference.update({
+      "members": FieldValue.arrayUnion(["$uid"]),
+      "groupId": documentReference.id
+    });
+
+    DocumentReference documentReference2 = await usercoll.doc(uid);
+    return await documentReference2.update({
+      "groups": FieldValue.arrayUnion(["${documentReference.id}"])
+    });
+  }
 }

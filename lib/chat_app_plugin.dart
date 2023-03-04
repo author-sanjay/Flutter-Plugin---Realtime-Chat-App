@@ -29,7 +29,8 @@ class ChatAppPlugin {
     }
   }
 
-  //add user
+  //add user with photo
+
   Future withphotoregisterwithemailpassword(
       String email, String password, String name, String photo) async {
     if (isemail(email) && validatePassword(password)) {
@@ -201,7 +202,36 @@ class ChatAppPlugin {
 
     return false;
   }
+
+//add groups
+  Future addgroup(
+      String uid, String adminname, String groupname, String groupicon) async {
+    try {
+      DatabaseService(uid: FirebaseAuth.instance.currentUser?.uid)
+          .addgroup(uid, adminname, groupname, groupicon);
+
+      return true;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future addgroupwithouticon(
+      String uid, String adminname, String groupname) async {
+    try {
+      DatabaseService(uid: FirebaseAuth.instance.currentUser?.uid)
+          .addgroupwithouticon(uid, adminname, groupname);
+
+      return true;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+//get user data
+
   //get chat
+
   //add chat
   //report chat
   //delete for me chat
