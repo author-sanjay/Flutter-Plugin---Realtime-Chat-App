@@ -9,6 +9,7 @@ import 'apis.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+      name: "Chatapp",
       options: const FirebaseOptions(
           apiKey: apiss.akey,
           appId: apiss.appId,
@@ -19,6 +20,9 @@ void main() async {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
+  static String name = "";
+  static String email = "";
+  static String password = "";
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -27,44 +31,76 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _chatAppPlugin = ChatAppPlugin();
 
+  Future register(String name, String email, String password) async {
+    try {
+      await _chatAppPlugin.withoutphotoregisterwithemailpassword(
+          email, password, name);
+
+      
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-
-    initPlatformState();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion = await _chatAppPlugin.getPlatformVersion() ??
-          'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: const Center(
-          child: Text(""),
-        ),
+        body: Center(
+            child: Padding(
+          padding: const EdgeInsets.all(38.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 28.0, bottom: 30),
+                child: Text(
+                  'Register',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              Text("Name"),
+              TextFormField(
+                onChanged: (value) {
+                  MyApp.name = value;
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Text("Email"),
+              ),
+              TextFormField(
+                onChanged: (value) {
+                  MyApp.email = value;
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Text("Password"),
+              ),
+              TextFormField(
+                obscureText: true,
+                onChanged: (value) {
+                  MyApp.password = value;
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: ElevatedButton(
+                    onPressed: () {
+                      register(MyApp.name, MyApp.email, MyApp.password);
+                    },
+                    child: Text("Register")),
+              )
+            ],
+          ),
+        )),
       ),
     );
   }

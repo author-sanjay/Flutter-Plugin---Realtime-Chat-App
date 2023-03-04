@@ -1,5 +1,6 @@
-
 // ignore_for_file: non_constant_identifier_names, unnecessary_null_comparison, avoid_print
+
+import 'dart:ffi';
 
 import 'package:chat_app_plugin/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -67,6 +68,16 @@ class ChatAppPlugin {
       } on FirebaseAuthException catch (e) {
         print(e);
       }
+    }
+  }
+
+  Future customregister(
+      String email, String profilephoto, String name, String uid) async {
+    try {
+      DatabaseService(uid: uid)
+          .inituserdatawithphoto(uid, name, email, profilephoto);
+    } on FirebaseException catch (e) {
+      print(e);
     }
   }
   //get chat
