@@ -9,9 +9,6 @@ import 'chat_app_plugin_platform_interface.dart';
 
 class ChatAppPlugin {
   final FirebaseAuth auth = FirebaseAuth.instance;
-  Future<String?> getPlatformVersion() {
-    return ChatAppPluginPlatform.instance.getPlatformVersion();
-  }
 
   //checkisemail
 
@@ -49,7 +46,10 @@ class ChatAppPlugin {
       } on FirebaseAuthException catch (e) {
         print(e);
       }
+    } else {
+      throw "Password or email not of right type";
     }
+    return false;
   }
 
   Future withoutphotoregisterwithemailpassword(
@@ -67,8 +67,11 @@ class ChatAppPlugin {
         }
       } on FirebaseAuthException catch (e) {
         print(e);
+        // return e;
       }
     }
+
+    return false;
   }
 
   Future customregister(

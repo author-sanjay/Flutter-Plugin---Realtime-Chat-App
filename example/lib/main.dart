@@ -1,3 +1,6 @@
+import 'package:chat_app_plugin/database_service.dart';
+import 'package:chat_app_plugin_example/User.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -28,15 +31,24 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+Users users = new Users(dp: "", email: "", password: "", uid: "");
+
 class _MyAppState extends State<MyApp> {
   final _chatAppPlugin = ChatAppPlugin();
+  final database = DatabaseService();
 
   Future register(String name, String email, String password) async {
     try {
-      await _chatAppPlugin.withoutphotoregisterwithemailpassword(
-          email, password, name);
+      await _chatAppPlugin
+          .withoutphotoregisterwithemailpassword(email, password, name)
+          .then((value) {
+        users.email = email;
+        users.password = password;
 
-      
+        print(users.email);
+      });
+
+      // print(uid);
     } catch (e) {
       print(e);
     }
