@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "312433422174",
+    "project_id": "bookish-d7dae",
+    "storage_bucket": "bookish-d7dae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312433422174:android:593db2c55ba7945fdd29cf",
+        "android_client_info": {
+          "package_name": "com.example.chat_app_plugin_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312433422174-3kocnum8ho9rojfirnpgheabq3q8e6d0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChzGY9G3MqZ4WSJFU4EasnkNSftNGHOTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312433422174-3kocnum8ho9rojfirnpgheabq3q8e6d0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
