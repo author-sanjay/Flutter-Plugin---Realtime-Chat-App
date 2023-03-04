@@ -1,4 +1,5 @@
-import 'dart:ffi';
+
+// ignore_for_file: await_only_futures
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -37,8 +38,6 @@ class DatabaseService {
   }
 
   Future getuserdata(String email) async {
-    QuerySnapshot snapshot =
-        await usercoll.where("email", isEqualTo: email).get();
   }
 
   getuserdataa() async {
@@ -58,13 +57,13 @@ class DatabaseService {
     });
 
     await documentReference.update({
-      "members": FieldValue.arrayUnion(["$uid"]),
+      "members": FieldValue.arrayUnion([uid]),
       "groupId": documentReference.id
     });
 
     DocumentReference documentReference2 = await usercoll.doc(uid);
     return await documentReference2.update({
-      "groups": FieldValue.arrayUnion(["${documentReference.id}"])
+      "groups": FieldValue.arrayUnion([(documentReference.id)])
     });
   }
 
@@ -80,13 +79,13 @@ class DatabaseService {
     });
 
     await documentReference.update({
-      "members": FieldValue.arrayUnion(["$uid"]),
+      "members": FieldValue.arrayUnion([uid]),
       "groupId": documentReference.id
     });
 
     DocumentReference documentReference2 = await usercoll.doc(uid);
     return await documentReference2.update({
-      "groups": FieldValue.arrayUnion(["${documentReference.id}"])
+      "groups": FieldValue.arrayUnion([(documentReference.id)])
     });
   }
 }

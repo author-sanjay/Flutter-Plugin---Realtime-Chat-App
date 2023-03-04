@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, file_names
+
 import 'package:chat_app_plugin/chat_app_plugin.dart';
 import 'package:chat_app_plugin/database_service.dart';
 import 'package:chat_app_plugin_example/Screens/Login.dart';
@@ -14,7 +16,7 @@ class Register extends StatefulWidget {
   State<Register> createState() => _RegisterState();
 }
 
-Users users = new Users(dp: "", email: "", password: "", uid: "");
+Users users = Users(dp: "", email: "", password: "", uid: "");
 
 class _RegisterState extends State<Register> {
   final _chatAppPlugin = ChatAppPlugin();
@@ -54,21 +56,21 @@ class _RegisterState extends State<Register> {
             padding: const EdgeInsets.all(38.0),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 28.0, bottom: 30),
+                const Padding(
+                  padding: EdgeInsets.only(top: 28.0, bottom: 30),
                   child: Text(
                     'Register',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
-                Text("Name"),
+                const Text("Name"),
                 TextFormField(
                   onChanged: (value) {
                     Register.name = value;
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
+                const Padding(
+                  padding: EdgeInsets.all(18.0),
                   child: Text("Email"),
                 ),
                 TextFormField(
@@ -76,8 +78,8 @@ class _RegisterState extends State<Register> {
                     Register.email = value;
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
+                const Padding(
+                  padding: EdgeInsets.all(18.0),
                   child: Text("Password"),
                 ),
                 TextFormField(
@@ -93,19 +95,19 @@ class _RegisterState extends State<Register> {
                         register(
                             Register.name, Register.email, Register.password);
                       },
-                      child: Text("Register")),
+                      child: const Text("Register")),
                 ),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Login(),
+                        builder: (context) => const Login(),
                       ),
                     );
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text("Login"),
                   ),
                 )

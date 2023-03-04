@@ -1,11 +1,9 @@
 // ignore_for_file: non_constant_identifier_names, unnecessary_null_comparison, avoid_print
 
-import 'dart:ffi';
 
 import 'package:chat_app_plugin/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'chat_app_plugin_platform_interface.dart';
 
 class ChatAppPlugin {
   final FirebaseAuth auth = FirebaseAuth.instance;

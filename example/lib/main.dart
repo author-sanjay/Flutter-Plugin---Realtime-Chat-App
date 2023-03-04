@@ -1,14 +1,7 @@
-import 'package:chat_app_plugin/database_service.dart';
-import 'package:chat_app_plugin_example/Screens/Login.dart';
 import 'package:chat_app_plugin_example/Screens/Register.dart';
-import 'package:chat_app_plugin_example/User.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import 'package:flutter/services.dart';
-import 'package:chat_app_plugin/chat_app_plugin.dart';
 import 'apis.dart';
 
 void main() async {
@@ -33,7 +26,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Register(),
     );
   }
