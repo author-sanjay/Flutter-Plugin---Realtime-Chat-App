@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:chat_app_plugin/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -31,13 +32,38 @@ class ChatAppPlugin {
   }
 
   //add user
-  Future registerwithemailpassword(
+  Future withphotoregisterwithemailpassword(
+      String email, String password, String name, String photo) async {
+    if (isemail(email) && validatePassword(password)) {
+      try {
+        User user = (await auth.createUserWithEmailAndPassword(
+                email: email, password: password))
+            .user!;
+
+        if (user != null) {
+          await DatabaseService(uid: user.uid)
+              .inituserdatawithphoto(user.uid, name, email, photo);
+          return true;
+        }
+      } on FirebaseAuthException catch (e) {
+        print(e);
+      }
+    }
+  }
+
+  Future withoutphotoregisterwithemailpassword(
       String email, String password, String name) async {
     if (isemail(email) && validatePassword(password)) {
       try {
         User user = (await auth.createUserWithEmailAndPassword(
                 email: email, password: password))
             .user!;
+
+        if (user != null) {
+          await DatabaseService(uid: user.uid)
+              .inituserdatawithoutphoto(user.uid, name, email);
+          return true;
+        }
       } on FirebaseAuthException catch (e) {
         print(e);
       }

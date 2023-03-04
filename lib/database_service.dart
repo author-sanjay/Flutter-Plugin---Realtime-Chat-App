@@ -5,24 +5,33 @@ class DatabaseService {
   final String? uid;
   DatabaseService({this.uid});
 
-  static final CollectionReference usercoll =
+  final CollectionReference usercoll =
       FirebaseFirestore.instance.collection("users");
-  static final CollectionReference groups =
+  final CollectionReference groups =
       FirebaseFirestore.instance.collection("groups");
-  static final CollectionReference chats =
+  final CollectionReference chats =
       FirebaseFirestore.instance.collection("chats");
-  static final CollectionReference report =
+  final CollectionReference report =
       FirebaseFirestore.instance.collection("report");
 
   //update user
-  static Future inituserdata(String uid, String name, String email,
-      String password, String photo) async {
+  Future inituserdatawithphoto(
+      String uid, String name, String email, String photo) async {
     return await usercoll.doc(uid).set({
       "chatswith": [],
       "email": email,
       "fullname": name,
       "groups": [],
       "profilephoto": photo
+    });
+  }
+
+  Future inituserdatawithoutphoto(String uid, String name, String email) async {
+    return await usercoll.doc(uid).set({
+      "chatswith": [],
+      "email": email,
+      "fullname": name,
+      "groups": [],
     });
   }
 }
