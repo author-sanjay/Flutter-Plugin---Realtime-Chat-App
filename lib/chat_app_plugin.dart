@@ -1,8 +1,8 @@
-import 'dart:math';
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_null_comparison, avoid_print
 
 import 'package:chat_app_plugin/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 import 'chat_app_plugin_platform_interface.dart';
 
@@ -17,14 +17,14 @@ class ChatAppPlugin {
   static bool isemail(String val) {
     return RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(val!);
+        .hasMatch(val);
   }
 
   RegExp pass_valid = RegExp(r"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)");
   //A function that validate user entered password
   bool validatePassword(String pass) {
-    String _password = pass.trim();
-    if (pass_valid.hasMatch(_password)) {
+    String password = pass.trim();
+    if (pass_valid.hasMatch(password)) {
       return true;
     } else {
       return false;

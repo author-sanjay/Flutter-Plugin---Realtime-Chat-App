@@ -25,7 +25,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   final _chatAppPlugin = ChatAppPlugin();
 
   @override
@@ -53,7 +52,6 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
     });
   }
 
@@ -64,7 +62,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
+        body: const Center(
           child: Text(""),
         ),
       ),

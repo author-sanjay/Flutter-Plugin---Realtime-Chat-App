@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 class apiss {
   static const akey = "AIzaSyCqHoXtK-cRUrA5eHUddmsU_lcbQJE0ycs";
   static const domin = "bookish-d7dae.firebaseapp.com";
