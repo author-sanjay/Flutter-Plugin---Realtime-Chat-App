@@ -90,4 +90,26 @@ class DatabaseService {
       "groups": FieldValue.arrayUnion([(documentReference.id)])
     });
   }
+
+  Future addreport(String uid, String uidofusertoreport, String messagetoreport,
+      String date) async {
+    DocumentReference documentrefrence = await report.add({
+      "reportedby": uid,
+      "reported": uidofusertoreport,
+      "messagereported": messagetoreport,
+      "date": date
+    });
+  }
+
+  getgroupchats(String groupid) async {
+    return groups
+        .doc(groupid)
+        .collection("messages")
+        .orderBy("time")
+        .snapshots();
+  }
+
+  getchatchats(String chatid) async {
+    return chats.doc(chatid).collection("messages").orderBy("time").snapshots();
+  }
 }
