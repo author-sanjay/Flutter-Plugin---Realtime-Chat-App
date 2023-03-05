@@ -1,9 +1,8 @@
 // ignore_for_file: non_constant_identifier_names, unnecessary_null_comparison, avoid_print
 
-
 import 'package:chat_app_plugin/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 
 class ChatAppPlugin {
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -129,12 +128,12 @@ class ChatAppPlugin {
 
   Future loginwithemailandpassword(String email, String password) async {
     try {
-      User user = await auth.signInWithEmailAndPassword(
-          email: email, password: password) as User;
-      if (user != null) {
+      await auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) {
         return true;
-      }
-      return true;
+      });
+      // if()
     } on FirebaseAuthException catch (e) {
       print(e);
     }

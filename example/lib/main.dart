@@ -1,4 +1,5 @@
 import 'package:chat_app_plugin_example/Screens/Register.dart';
+import 'package:chat_app_plugin_example/User.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  // Users users = Users(dp: "", email: "", password: "", uid: "");
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(

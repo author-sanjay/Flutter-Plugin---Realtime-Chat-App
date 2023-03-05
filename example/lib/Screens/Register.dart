@@ -16,7 +16,7 @@ class Register extends StatefulWidget {
   State<Register> createState() => _RegisterState();
 }
 
-Users users = Users(dp: "", email: "", password: "", uid: "");
+// Users users = Users(dp: "", email: "", password: "", uid: "");
 
 class _RegisterState extends State<Register> {
   final _chatAppPlugin = ChatAppPlugin();
@@ -26,12 +26,7 @@ class _RegisterState extends State<Register> {
     try {
       await _chatAppPlugin
           .withoutphotoregisterwithemailpassword(email, password, name)
-          .then((value) {
-        users.email = email;
-        users.password = password;
-
-        print(users.email);
-      });
+          .then((value) {});
 
       // print(uid);
     } catch (e) {

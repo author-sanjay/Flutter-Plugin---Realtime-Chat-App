@@ -1,4 +1,3 @@
-
 // ignore_for_file: await_only_futures
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -38,9 +37,12 @@ class DatabaseService {
   }
 
   Future getuserdata(String email) async {
+    QuerySnapshot snapshot =
+        await usercoll.where("email", isEqualTo: email).get();
+    return snapshot;
   }
 
-  getuserdataa() async {
+  getusergroups() async {
     return await usercoll.doc(uid).snapshots();
   }
 
