@@ -51,3 +51,41 @@ A Flutter plugin for building a realtime chat application. This plugin provides 
 - `startnewchat(String uid, String uid2, Map<String, dynamic> chatmessage) `
 
 - `addnewchatmessage(String chatid, Map<String, dynamic> chat)`
+
+
+- `Future withphotoregisterwithemailpassword(
+      String email, String password, String name, String photo)`
+   
+ - ` Future<String?> tokenwithphotoregisterwithemailpassword(
+      String email, String password, String name, String photo) `
+
+
+ - ` Future withoutphotoregisterwithemailpassword(
+      String email, String password, String name) `
+
+
+  - `Future<String?> tokenwithoutphotoregisterwithemailpassword(
+      String email, String password, String name)`
+
+
+  - `Future customregister(
+      String email, String profilephoto, String name, String uid)`
+
+
+- `Future loginwithemailandpassword(String email, String password)`
+
+
+  - `Future<String?> tokenloginwithemailpassword(String email, password)` 
+  - `Future<String?> tokenloginwithphonenumber(String phonenumber)`
+  - `Future loginwithphonenumber(String phonenumber)`
+  - `Future signout()`
+  - `Future sendforgotpassword(String email)`
+  - `Future addgroup(String uid, String adminname, String groupname, String groupicon)`     
+  - `Future addgroupwithouticon(
+      String uid, String adminname, String groupname)`
+
+
+
+
+
+
