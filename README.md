@@ -14,5 +14,6 @@ A Flutter plugin for building a realtime chat application. This plugin provides 
 - Read receipts: See when a user has read a message 👀
 - Customizable UI: Customize the look and feel of the chat interface to match your app's branding 🎨
 
-## Under Mantainance 🚀
+## Installation
+    `flutter pub add chat_app_plugin`
 
