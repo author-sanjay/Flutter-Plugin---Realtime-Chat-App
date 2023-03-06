@@ -225,6 +225,13 @@ class ChatAppPlugin {
     }
   }
 
+  // Future getchat(String chatid) async {
+  //   try {
+  //     DatabaseService(uid: FirebaseAuth.instance.currentUser?.uid)
+  //         .getchat(chatid);
+  //   } catch (e) {}
+  // }
+
 //get user data
 
   //get chat
