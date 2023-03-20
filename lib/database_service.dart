@@ -184,10 +184,10 @@ class DatabaseService {
     if (!user1chatswith.contains(uid2)) {
       // user1chatswith.remove("${uid1}_$uid2");
       user1.update({
-        "chatswith": FieldValue.arrayUnion([uid1 + "_" + firstusername]),
+        "chatswith": FieldValue.arrayUnion([uid2 + "_" + firstusername]),
       });
       user2.update({
-        "chatswith": FieldValue.arrayUnion([uid2 + "_" + secondusername]),
+        "chatswith": FieldValue.arrayUnion([uid1 + "_" + secondusername]),
       });
 
       chats.doc(chatid).set({
