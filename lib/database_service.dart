@@ -1,4 +1,4 @@
-// ignore_for_file: await_only_futures
+// ignore_for_file: await_only_futures, unused_local_variable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -71,8 +71,7 @@ class DatabaseService {
 
     DocumentReference documentReference2 = await usercoll.doc(uid);
     return await documentReference2.update({
-      "groups":
-          FieldValue.arrayUnion([("${documentReference.id}_${groupname}")])
+      "groups": FieldValue.arrayUnion([("${documentReference.id}_$groupname")])
     });
   }
 
@@ -94,8 +93,7 @@ class DatabaseService {
 
     DocumentReference documentReference2 = await usercoll.doc(uid);
     return await documentReference2.update({
-      "groups":
-          FieldValue.arrayUnion([("${documentReference.id}_${groupname}")])
+      "groups": FieldValue.arrayUnion([("${documentReference.id}_$groupname")])
     });
   }
 
@@ -130,7 +128,7 @@ class DatabaseService {
     DocumentSnapshot snapshot = await databaseService.get();
 
     List<dynamic> groups = await snapshot.get('groups');
-    if (groups.contains("${groupid}_${groupname}")) {
+    if (groups.contains("${groupid}_$groupname")) {
       return true;
     } else {
       return false;
@@ -147,7 +145,7 @@ class DatabaseService {
     List<dynamic> members = await groupdocsnapshot.get('members');
     if (groupss.contains("${groupid}_$groupname")) {
       await userdoc.update({
-        "groups": FieldValue.arrayRemove(["${groupid}_${groupname}"])
+        "groups": FieldValue.arrayRemove(["${groupid}_$groupname"])
       });
 
       await groupdoc.update({
@@ -177,19 +175,19 @@ class DatabaseService {
     DocumentSnapshot user2Snapshot = await chat2.get();
     String chatid = "";
     if (uid1.codeUnitAt(0) < uid2.codeUnitAt(0)) {
-      chatid = "${uid1}_${uid2}";
+      chatid = "${uid1}_$uid2";
     } else {
-      chatid = "${uid2}_${uid1}";
+      chatid = "${uid2}_$uid1";
     }
     List<dynamic> user1chatswith = await snap1.get('chatswith');
     List<dynamic> user2chatswith = await snap2.get('chatswith');
-    if (!user1chatswith.contains("$uid2")) {
+    if (!user1chatswith.contains(uid2)) {
       // user1chatswith.remove("${uid1}_$uid2");
       user1.update({
-        "chatswith": FieldValue.arrayUnion(["${firstusername}"]),
+        "chatswith": FieldValue.arrayUnion([uid1 + "_" + firstusername]),
       });
       user2.update({
-        "chatswith": FieldValue.arrayUnion(["${secondusername}"]),
+        "chatswith": FieldValue.arrayUnion([uid2 + "_" + secondusername]),
       });
 
       chats.doc(chatid).set({
@@ -224,10 +222,10 @@ class DatabaseService {
     await chatdoc.update({"chatid": chatdoc.id});
 
     usercoll.doc(uid).update({
-      "chatswith": FieldValue.arrayUnion([uid2])
+      "chatswith": FieldValue.arrayUnion([uid + "_" + uid2])
     });
     usercoll.doc(uid2).update({
-      "chatswith": FieldValue.arrayUnion([uid])
+      "chatswith": FieldValue.arrayUnion([uid2 + "_" + uid])
     });
 
     chats.doc(chatdoc.id).collection("messages").add(chatmessage);

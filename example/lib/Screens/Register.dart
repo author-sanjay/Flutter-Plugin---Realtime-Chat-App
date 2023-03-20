@@ -3,7 +3,6 @@
 import 'package:chat_app_plugin/chat_app_plugin.dart';
 import 'package:chat_app_plugin/database_service.dart';
 import 'package:chat_app_plugin_example/Screens/Login.dart';
-import 'package:chat_app_plugin_example/User.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {

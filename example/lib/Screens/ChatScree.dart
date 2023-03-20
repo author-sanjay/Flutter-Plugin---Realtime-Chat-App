@@ -1,6 +1,6 @@
+// ignore_for_file: file_names, must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class ChatScreen extends StatefulWidget {
   ChatScreen(
@@ -23,7 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
       body: ConstrainedBox(
         constraints:
             BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Center( 
               child: Column(
@@ -36,6 +36,5 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
       ),
     );
-    ;
   }
 }

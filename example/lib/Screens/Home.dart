@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, avoid_unnecessary_containers, non_constant_identifier_names
+
 import 'package:chat_app_plugin/database_service.dart';
 import 'package:chat_app_plugin_example/Screens/ChatScree.dart';
 import 'package:chat_app_plugin_example/Screens/ChatUser.dart';
@@ -21,7 +23,6 @@ class _HomeState extends State<Home> {
     await DatabaseService(uid: FirebaseAuth.instance.currentUser?.uid)
         .getusergroups()
         .then((snapshot) {
-      print(snapshot);
       setState(() {
         chats = snapshot;
       });
@@ -30,6 +31,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     getusergroups();
@@ -41,14 +43,14 @@ class _HomeState extends State<Home> {
       body: ConstrainedBox(
         constraints:
             BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Center(
               child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 20),
-                child: Container(
+                child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.7,
                   child: Row(
                     children: [
@@ -59,13 +61,12 @@ class _HomeState extends State<Home> {
                               if (!_HomeState.chatselected) {
                                 setState(() {
                                   _HomeState.chatselected = true;
-                                  print(_HomeState.chatselected);
                                 });
                               }
                             },
-                            child: Text("Chats")),
+                            child: const Text("Chats")),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(top: 38.0),
                         child: ElevatedButton(
@@ -74,17 +75,16 @@ class _HomeState extends State<Home> {
                                 setState(() {
                                   _HomeState.chatselected = false;
                                 });
-                                print(_HomeState.chatselected);
                               }
                             },
-                            child: Text("Groups")),
+                            child: const Text("Groups")),
                       ),
                     ],
                   ),
                 ),
               ),
               _HomeState.chatselected ? chatlist() : grouplist(),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Center(
                   child: Padding(
@@ -95,19 +95,19 @@ class _HomeState extends State<Home> {
                           onPressed: () {
                             popup(context);
                           },
-                          child: Text("Add Group"),
+                          child: const Text("Add Group"),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         FloatingActionButton(
                           onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Search(),
+                                builder: (context) => const Search(),
                               ),
                             );
                           },
-                          child: Icon(Icons.search),
+                          child: const Icon(Icons.search),
                         ),
                       ],
                     ),
@@ -157,10 +157,10 @@ class _HomeState extends State<Home> {
                             },
                             child: Container(
                                 color: Colors.blueAccent,
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 child: Text(
                                   snapshot.data['chatswith'][index],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 16, color: Colors.white),
                                 )),
                           )
@@ -188,7 +188,6 @@ class _HomeState extends State<Home> {
                 //   },
                 // ),
               );
-              ;
             } else {
               return nochat();
             }
@@ -246,7 +245,6 @@ class _HomeState extends State<Home> {
                 //   },
                 // ),
               );
-              ;
             } else {
               return nochat();
             }
@@ -269,12 +267,12 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.only(top: 58.0),
         child: Column(
           children: [
-            Text("Sorry You dont have any chat"),
+            const Text("Sorry You dont have any chat"),
             ElevatedButton(
                 onPressed: () {
                   popup(context);
                 },
-                child: Text("Create Group"))
+                child: const Text("Create Group"))
           ],
         ),
       ),
@@ -286,22 +284,21 @@ class _HomeState extends State<Home> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Add Group"),
+          title: const Text("Add Group"),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("Enter Group Name"),
+              const Text("Enter Group Name"),
               TextFormField(
                 onChanged: (value) {
                   _HomeState.groupname = value;
-                  print(_HomeState.groupname);
                 },
               )
             ],
           ),
           actions: [
             MaterialButton(
-              child: Text("OK"),
+              child: const Text("OK"),
               onPressed: () {
                 addgroup();
                 // Navigator.of(context).pop();
@@ -342,14 +339,14 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(
                     color: Colors.lightBlueAccent,
                     borderRadius: BorderRadius.circular(50)),
-                padding: EdgeInsets.all(20),
-                child: Text("G"),
+                padding: const EdgeInsets.all(20),
+                child: const Text("G"),
               ),
               Container(
-                padding: EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(
                   groupName,
-                  style: TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 18),
                 ),
               ),
             ],

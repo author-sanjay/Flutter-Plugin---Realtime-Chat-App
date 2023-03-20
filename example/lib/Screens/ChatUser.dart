@@ -1,10 +1,10 @@
+// ignore_for_file: file_names, must_be_immutable
+
 import 'package:chat_app_plugin/database_service.dart';
 import 'package:chat_app_plugin_example/Screens/MessafeTile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class ChatUser extends StatefulWidget {
   ChatUser(

@@ -3,9 +3,6 @@
 import 'package:chat_app_plugin/chat_app_plugin.dart';
 import 'package:chat_app_plugin/database_service.dart';
 import 'package:chat_app_plugin_example/Screens/Home.dart';
-import 'package:chat_app_plugin_example/User.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -27,7 +24,7 @@ class _LoginState extends State<Login> {
         .then((value) => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Home(),
+                builder: (context) => const Home(),
               ),
             ));
   }
@@ -39,45 +36,44 @@ class _LoginState extends State<Login> {
           child: ConstrainedBox(
               constraints:
                   BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-              child: Container(
-                  child: Center(
-                      child: Padding(
+              child: Center(
+                  child: Padding(
                 padding: const EdgeInsets.all(28.0),
                 child: Column(
+              children: [
+                const Text("Login"),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Login"),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.all(18.0),
-                          child: Text("Email"),
-                        ),
-                        TextFormField(
-                          onChanged: (value) {
-                            Login.email = value;
-                          },
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.all(18.0),
-                          child: Text("Password"),
-                        ),
-                        TextFormField(
-                          obscureText: true,
-                          onChanged: (value) {
-                            Login.password = value;
-                          },
-                        ),
-                      ],
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
+                      child: Text("Email"),
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          login(Login.email, Login.password);
-                        },
-                        child: Text("Login"))
+                    TextFormField(
+                      onChanged: (value) {
+                        Login.email = value;
+                      },
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
+                      child: Text("Password"),
+                    ),
+                    TextFormField(
+                      obscureText: true,
+                      onChanged: (value) {
+                        Login.password = value;
+                      },
+                    ),
                   ],
                 ),
-              ))))),
+                ElevatedButton(
+                    onPressed: () {
+                      login(Login.email, Login.password);
+                    },
+                    child: const Text("Login"))
+              ],
+                ),
+              )))),
     );
   }
 }
